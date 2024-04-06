@@ -1,4 +1,4 @@
-package ru.kptc.equipment_accounting.controller;
+package ru.kptc.equipmentaccounting.controller;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -10,15 +10,19 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import lombok.Getter;
-import ru.kptc.equipment_accounting.exception.ValidationException;
-import ru.kptc.equipment_accounting.pojo.Equipment;
-import ru.kptc.equipment_accounting.pojo.EquipmentAtAddress;
+import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.stereotype.Component;
+import ru.kptc.equipmentaccounting.exception.ValidationException;
+import ru.kptc.equipmentaccounting.pojo.Equipment;
+import ru.kptc.equipmentaccounting.pojo.EquipmentAtAddress;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-
+@Component
+@FxmlView("equipment-manage.fxml")
 public class EquipmentManageController {
     @Getter
     private EquipmentAtAddress selectedObject;
@@ -32,13 +36,12 @@ public class EquipmentManageController {
     @FXML
     public TableColumn<Equipment, String> serialNumberColumn;
 
-
     public void setSelectedObject(EquipmentAtAddress selectedObject) {
         this.selectedObject = selectedObject;
 
-        // TODO: Удалить после приркучивания базы
+        // TODO: Удалить после прикручивания базы
         ObservableList<Equipment> chars = FXCollections.observableArrayList(
-                getSelectedObject().getEquipmentList()
+                this.selectedObject.getEquipmentList()
         );
 
         secondTable.setItems(chars);
@@ -54,7 +57,7 @@ public class EquipmentManageController {
     @FXML
     protected void deleteItem() {
         try {
-            getSelectedObject().removeEquipment(secondTable.getSelectionModel().getSelectedItem());
+            selectedObject.removeEquipment(secondTable.getSelectionModel().getSelectedItem());
         } catch (NullPointerException e) {
             showErrorWindow("Вы не выбрали элемент!");
         }
@@ -67,7 +70,7 @@ public class EquipmentManageController {
         try {
             Equipment newEquipment = createNewEquipmentWithWindow();
 
-            getSelectedObject()
+            selectedObject
                     .addNewEquipment(newEquipment);
         } catch (ValidationException e) {
             showErrorWindow(e.getMessage());
@@ -78,7 +81,7 @@ public class EquipmentManageController {
 
     private void reloadTable() {
         secondTable.setItems(FXCollections.observableArrayList(
-                getSelectedObject().getEquipmentList()
+                selectedObject.getEquipmentList()
         ));
     }
 
@@ -124,9 +127,7 @@ public class EquipmentManageController {
         Node createButton = dialog.getDialogPane().lookupButton(createButtonType);
         createButton.setDisable(true);
 
-        modelField.textProperty().addListener((observable, oldValue, newValue) -> {
-            createButton.setDisable(newValue.trim().isEmpty());
-        });
+        modelField.textProperty().addListener((observable, oldValue, newValue) -> createButton.setDisable(newValue.trim().isEmpty()));
 
         dialog.getDialogPane().setContent(grid);
 
@@ -141,11 +142,7 @@ public class EquipmentManageController {
 
         Optional<List<String>> result = dialog.showAndWait();
 
-        if (result.isPresent()) {
-            return result.get();
-        }
-
-        throw new RuntimeException("Ничего не выбрано!");
+        return result.orElse(Collections.emptyList());
     }
 
     private void showErrorWindow(String msg) {

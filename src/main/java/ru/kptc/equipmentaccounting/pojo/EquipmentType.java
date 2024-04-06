@@ -1,10 +1,10 @@
-package ru.kptc.equipment_accounting.pojo;
+package ru.kptc.equipmentaccounting.pojo;
 
 public enum EquipmentType {
-    SCANNER("Сканнер"),
+    SCANNER("Сканер"),
     SYSTEM_BLOCK("Системный блок"),
     MONITOR("Монитор"),
-    PRINTER("Принетр");
+    PRINTER("Принтер");
 
     private final String rusValue;
 
@@ -17,7 +17,7 @@ public enum EquipmentType {
     }
 
     /**
-     * Получить элемент енама оборудвания по строке
+     * Получить элемент енама оборудования по строке
      *
      * @param name название типа оборудования
      * @return элемент енама оборудования
@@ -27,10 +27,10 @@ public enum EquipmentType {
              return valueOf(name);
         } catch (IllegalArgumentException e) {
             return switch (name) {
-                case "Сканнер" -> SCANNER;
+                case "Сканер" -> SCANNER;
                 case "Системный блок" -> SYSTEM_BLOCK;
                 case "Монитор" -> MONITOR;
-                case "Принетр" -> PRINTER;
+                case "Принтер" -> PRINTER;
                 default -> throw e;
             };
         }

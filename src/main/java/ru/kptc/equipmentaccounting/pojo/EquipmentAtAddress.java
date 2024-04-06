@@ -1,17 +1,12 @@
-package ru.kptc.equipment_accounting.pojo;
-
-import lombok.Getter;
+package ru.kptc.equipmentaccounting.pojo;
 
 import java.util.List;
 
 public class EquipmentAtAddress {
     private final Integer objectCode;
-    @Getter
     private final String address;
-    @Getter
     private final String equipmentType;
-    @Getter
-    private List<Equipment> equipmentList;
+    private final List<Equipment> equipmentList;
 
     public EquipmentAtAddress(Integer objectCode, String address, EquipmentType equipmentType, List<Equipment> equipmentList) {
         this.objectCode = objectCode;
@@ -20,15 +15,27 @@ public class EquipmentAtAddress {
         this.equipmentList = equipmentList;
     }
 
-    public int getObjectCode() {
-        return objectCode;
-    }
-
     public void addNewEquipment(Equipment equipment) {
         this.equipmentList.add(equipment);
     }
 
     public void removeEquipment(Equipment equipment) {
         this.equipmentList.remove(equipment);
+    }
+
+    public List<Equipment> getEquipmentList() {
+        return equipmentList;
+    }
+
+    public Integer getObjectCode() {
+        return objectCode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getEquipmentType() {
+        return equipmentType;
     }
 }

@@ -1,9 +1,9 @@
-package ru.kptc.equipment_accounting.controller;
+package ru.kptc.equipmentaccounting.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -11,17 +11,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ru.kptc.equipment_accounting.EquipmentAccountingApplication;
-import ru.kptc.equipment_accounting.pojo.Equipment;
-import ru.kptc.equipment_accounting.pojo.EquipmentAtAddress;
-import ru.kptc.equipment_accounting.pojo.EquipmentType;
+import net.rgielen.fxweaver.core.FxWeaver;
+import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
+import ru.kptc.equipmentaccounting.pojo.Equipment;
+import ru.kptc.equipmentaccounting.pojo.EquipmentAtAddress;
+import ru.kptc.equipmentaccounting.pojo.EquipmentType;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@FxmlView("main-page.fxml")
 public class MainPageController {
-    private List<EquipmentAtAddress> equipmentAtAddressList;
+    private ConfigurableApplicationContext applicationContext;
+
     @FXML
     public TableView<EquipmentAtAddress> mainTable;
     @FXML
@@ -34,6 +39,7 @@ public class MainPageController {
 
     @FXML
     protected void initialize() {
+        List<EquipmentAtAddress> equipmentAtAddressList;
         // TODO: Удалить после приркучивания базы
         equipmentAtAddressList = List.of(
                 new EquipmentAtAddress(1, "Кострома", EquipmentType.MONITOR, new ArrayList<>(List.of(new Equipment("test1", "112345", "112345")))),
@@ -76,11 +82,12 @@ public class MainPageController {
         }
     }
 
-    public void createEquipmentManageWindow (EquipmentAtAddress selectedObject) throws IOException {
+    public void createEquipmentManageWindow (EquipmentAtAddress selectedObject) {
         Stage dialogStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(EquipmentAccountingApplication.class.getResource("equipment-manage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        EquipmentManageController equipmentManageController = fxmlLoader.getController();
+        FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(EquipmentManageController.class);
+        Scene scene = new Scene(root, 600, 400);
+        EquipmentManageController equipmentManageController = applicationContext.getBean(EquipmentManageController.class);
 
         equipmentManageController.setSelectedObject(selectedObject);
 
