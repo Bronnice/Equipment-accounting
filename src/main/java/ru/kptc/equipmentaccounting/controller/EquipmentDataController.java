@@ -1,9 +1,9 @@
 package ru.kptc.equipmentaccounting.controller;
 
-import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 
-@Component
-@FxmlView("equipment-data.fxml")
+@Controller
+@RequiredArgsConstructor
 public class EquipmentDataController {
 }

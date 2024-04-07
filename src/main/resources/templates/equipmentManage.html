@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список оборудования</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainPage.css">
+</head>
+<body>
+<h1>СПИСОК ОБОРУДОВАНИЯ</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Модель</th>
+        <th>Инвентарный номер</th>
+        <th>Серийный номер</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="equipment : ${equipmentList}">
+        <td th:text="${equipment.model}">Model</td>
+        <td th:text="${equipment.inventoryNumber}">Inventory Number</td>
+        <td th:text="${equipment.serialNumber}">Serial Number</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

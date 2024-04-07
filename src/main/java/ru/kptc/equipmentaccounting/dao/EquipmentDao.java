@@ -1,13 +1,16 @@
 package ru.kptc.equipmentaccounting.dao;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "equipment")
+@AllArgsConstructor
+@Getter
+@NoArgsConstructor
 public class EquipmentDao {
     @Id
     @GeneratedValue(generator = "increment")
@@ -15,30 +18,7 @@ public class EquipmentDao {
     private String model;
     private String inventoryNumber;
     private String serialNumber;
-
-    public EquipmentDao() {
-    }
-
-    public EquipmentDao(Long id, String model, String inventoryNumber, String serialNumber) {
-        this.id = id;
-        this.model = model;
-        this.inventoryNumber = inventoryNumber;
-        this.serialNumber = serialNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getInventoryNumber() {
-        return inventoryNumber;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
+    @ManyToOne
+    @JoinColumn(name="equipmentAtAddressId", nullable=false)
+    private EquipmentAtAddressDao equipmentAtAddress;
 }

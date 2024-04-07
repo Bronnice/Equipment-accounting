@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface EquipmentRepository extends JpaRepository<EquipmentDao, Long>{
-    List<EquipmentDao> findAll();
+    List<EquipmentDao> findAllByEquipmentAtAddressId(Long id);
 }
