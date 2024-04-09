@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
 @Table(name = "equipment")
 @AllArgsConstructor
 @Getter
+@Setter
 @NoArgsConstructor
 public class EquipmentDao {
     @Id
@@ -21,4 +23,6 @@ public class EquipmentDao {
     @ManyToOne
     @JoinColumn(name="equipmentAtAddressId", nullable=false)
     private EquipmentAtAddressDao equipmentAtAddress;
+    @OneToOne(mappedBy = "equipment")
+    private EquipmentDataDao equipmentData;
 }

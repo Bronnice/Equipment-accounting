@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Убираем отступы */
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Два столбца равной ширины */
+    gap: 10px;
+    margin: auto; /* Выравнивание по центру */
+    width: 50%; /* Ширина контейнера */
+    border: 1px solid #ccc; /* Внешняя граница */
+    padding: 10px; /* Добавляем отступ вокруг контейнера */
+    position: relative; /* Позиционирование для псевдоэлементов */
+}
+.grid-container label {
+    text-align: right; /* Выравнивание текста по правому краю */
+    padding-right: 10px; /* Отступ от меток */
+}
+.grid-container input {
+    width: 100%; /* Занимает всю доступную ширину */
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
+}
+.grid-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px; /* Ширина линии */
+    background-color: #ccc; /* Цвет линии */
+    left: 50%; /* Расположение посередине между столбцами */
+    transform: translateX(-50%); /* Сдвигаем на половину ширины линии */
+}
+.submit-btn {
+    display: block;
+    margin: 0 auto; /* Выравнивание кнопки по центру */
+    margin-top: 10px;
+    padding: 5px 20px; /* Поля кнопки */
+}
+h1 {
+    text-align: center; /* Выравнивание заголовка по центру */
+}

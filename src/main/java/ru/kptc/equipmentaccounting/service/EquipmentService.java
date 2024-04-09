@@ -2,8 +2,7 @@ package ru.kptc.equipmentaccounting.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.kptc.equipmentaccounting.converter.Converter;
-import ru.kptc.equipmentaccounting.pojo.Equipment;
+import ru.kptc.equipmentaccounting.dao.EquipmentDao;
 import ru.kptc.equipmentaccounting.repository.EquipmentRepository;
 
 import java.util.List;
@@ -13,7 +12,15 @@ import java.util.List;
 public class EquipmentService {
     private final EquipmentRepository equipmentRepository;
 
-    public List<Equipment> getAllEquipmentByEquipmentAtAddressId(Long id) {
-        return Converter.equipmentDaoToPojo(equipmentRepository.findAllByEquipmentAtAddressId(id));
+    public List<EquipmentDao> getAllEquipmentByEquipmentAtAddressId(Long id) {
+        return equipmentRepository.findAllByEquipmentAtAddressId(id);
+    }
+
+    public void deleteEquipmentById(Long id) {
+        equipmentRepository.deleteById(id);
+    }
+
+    public void saveEquipment(EquipmentDao equipmentDao) {
+        equipmentRepository.save(equipmentDao);
     }
 }

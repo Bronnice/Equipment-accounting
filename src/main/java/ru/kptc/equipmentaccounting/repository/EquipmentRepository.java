@@ -8,5 +8,10 @@ import java.util.List;
 
 @Repository
 public interface EquipmentRepository extends JpaRepository<EquipmentDao, Long>{
-    List<EquipmentDao> findAllByEquipmentAtAddressId(Long id);
+    List<EquipmentDao> findAllByEquipmentAtAddressId(Long equipmentAtAddressId);
+
+    @Override
+    void deleteById(Long id);
+
+    EquipmentDao save(EquipmentDao equipmentDao);
 }

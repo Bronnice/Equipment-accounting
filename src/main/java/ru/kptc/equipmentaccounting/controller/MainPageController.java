@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.kptc.equipmentaccounting.service.EquipmentAtAddressService;
 
-@Controller("/main")
+@Controller
 @RequiredArgsConstructor
 public class MainPageController {
     private final EquipmentAtAddressService equipmentAtAddressService;
