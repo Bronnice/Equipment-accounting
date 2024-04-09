@@ -15,4 +15,8 @@ public class EquipmentDataService {
     public Optional<EquipmentDataDao> getByEquipmentId(Long equipmentId) {
         return repository.findByEquipmentId(equipmentId);
     }
+
+    public void save(EquipmentDataDao equipmentData) {
+        repository.save(equipmentData);
+    }
 }
