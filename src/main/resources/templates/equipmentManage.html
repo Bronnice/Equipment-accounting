@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Список оборудования</title>
@@ -7,6 +7,7 @@
 </head>
 <body>
 <h1 class="center">СПИСОК ОБОРУДОВАНИЯ</h1>
+<label for="myInput"></label><input type="text" id="myInput" placeholder="Найти...">
 <table>
     <thead>
     <tr>
@@ -26,6 +27,7 @@
                 <input type="hidden" name="_method" value="delete">
                 <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот элемент оборудования?')">Удалить</button>
             </form>
+            <button type="submit" onclick="return confirm('Вы уверены, что хотите переместить этот элемент оборудования?')">Переместить</button>
         </td>
     </tr>
     </tbody>

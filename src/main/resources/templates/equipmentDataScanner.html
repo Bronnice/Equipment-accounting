@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сканер: Подробная информация</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/equipmentData.css">
+</head>
+<body>
+<h1>ПОДРОБНАЯ ИНФОРМАЦИЯ</h1>
+
+<div class="container">
+    <form>
+        <div class="grid-container">
+            <label for="floor">Этаж:</label>
+            <input type="text" id="floor" name="floor" th:value="${floor}">
+
+            <label for="room">Комната:</label>
+            <input type="text" id="room" name="room" th:value="${room}">
+
+            <label for="isAvailableAutoGive">Устройство автоподачи:</label>
+            <input type="checkbox" id="isAvailableAutoGive" name="isAvailableAutoGive" th:value="${scanner.isAvailableAutoGive}">
+
+            <label for="paperMaxFormat">Максимальный формат бумаги:</label>
+            <input type="text" id="paperMaxFormat" name="paperMaxFormat" th:value="${scanner.paperMaxFormat}">
+        </div>
+    </form>
+</div>
+
+<button class="submit-btn" type="submit">Сохранить</button>
+</body>
+</html>
