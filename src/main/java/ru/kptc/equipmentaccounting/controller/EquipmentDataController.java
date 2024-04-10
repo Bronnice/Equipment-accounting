@@ -28,14 +28,4 @@ public class EquipmentDataController {
         model.addAttribute("room", equipmentData.getRoom());
         return "equipmentData";
     }
-
-    @PostMapping("/{}/saveData")
-    public ResponseEntity<String> saveData(@RequestBody EquipmentDataDto dataDto) {
-        try {
-            equipmentDataService.saveData(dataDto);
-            return ResponseEntity.ok("Данные успешно сохранены");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Произошла ошибка при сохранении данных");
-        }
-    }
 }
