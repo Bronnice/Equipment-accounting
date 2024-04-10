@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Системный блок: Подробная информация</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/equipmentData.css">
+</head>
+<body>
+<h1>ПОДРОБНАЯ ИНФОРМАЦИЯ</h1>
+
+<div class="container">
+    <form>
+        <div class="grid-container">
+            <label for="floor">Этаж:</label>
+            <input type="text" id="floor" name="floor" th:value="${floor}">
+
+            <label for="room">Комната:</label>
+            <input type="text" id="room" name="room" th:value="${room}">
+
+            <label for="processorModel">Модель процессора:</label>
+            <input type="text" id="processorModel" name="processorModel" th:value="${systemBlock.processorModel}">
+
+            <label for="coreCount">Общее количество ядер:</label>
+            <input type="number" id="coreCount" name="coreCount" th:value="${systemBlock.coresCount}">
+
+            <label for="baseFrequency">Базовая тактовая частота (ГГц):</label>
+            <input type="text" id="baseFrequency" name="baseFrequency" th:value="${systemBlock.clockFrequency}">
+
+            <label for="ramType">Тип оперативной памяти:</label>
+            <input type="text" id="ramType" name="ramType" th:value="${systemBlock.ramType}">
+
+            <label for="ramCapacity">Общий объем оперативной памяти (ГБ):</label>
+            <input type="number" id="ramCapacity" name="ramCapacity" th:value="${systemBlock.ramCapacity}">
+
+            <label for="hddSize">Размер жесткого диска (ГБ):</label>
+            <input type="number" id="hddSize" name="hddSize" th:value="${systemBlock.hddCapacity}">
+        </div>
+    </form>
+</div>
+
+<button class="submit-btn" type="submit">Сохранить</button>
+</body>
+</html>

@@ -1,0 +1,88 @@
+@CHARSET "windows-1255";
+
+TABLE {
+    width: 90%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+TD, TH {
+    padding: 3px;
+    border: 1px solid black;
+}
+
+TH {
+    background: #b0e0e6;
+}
+
+tbody tr:hover {
+    background: #f3bd48; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+}
+
+.btnCenter {
+  left: 50%;
+  font-size: 17px;
+  margin: 15px;
+}
+
+.btnTableCenter {
+  margin: 0;
+  left: 50%;
+  font-size: 17px;
+}
+
+.center {
+    text-align: center;
+}
+
+ /* Стили для всей страницы */
+body {
+    font-size: 20px;
+}
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрываем модальное окно по умолчанию */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    display: grid; /* Используем сетку для распределения элементов внутри модального окна */
+    grid-gap: 10px;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#myInput {
+    background-image: url('/static/images/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 60%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    margin-left: 15%;
+}

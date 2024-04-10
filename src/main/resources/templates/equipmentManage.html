@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список оборудования</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/equipmentManage.css">
+</head>
+<body>
+<h1 class="center">СПИСОК ОБОРУДОВАНИЯ</h1>
+<label for="myInput"></label><input type="text" id="myInput" placeholder="Найти...">
+<table>
+    <thead>
+    <tr>
+        <th>Модель</th>
+        <th>Инвентарный номер</th>
+        <th>Серийный номер</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="equipment : ${equipmentList}" th:attr="data-equipmentId=${equipment.id}" onclick="redirect(this.getAttribute('data-equipmentId'))">
+        <td th:text="${equipment.model}">Model</td>
+        <td th:text="${equipment.inventoryNumber}">Inventory Number</td>
+        <td th:text="${equipment.serialNumber}">Serial Number</td>
+        <td class="center">
+            <form id="deleteForm" th:action="@{'/equipment/' + ${equipment.equipmentAtAddress.id} + '/delete/' + ${equipment.id}}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот элемент оборудования?')">Удалить</button>
+            </form>
+            <button type="submit" onclick="return confirm('Вы уверены, что хотите переместить этот элемент оборудования?')">Переместить</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="center">
+    <button id="createButton" class="btnCenter" onclick="createNewEquipment()" th:data-equipmentId="${equipmentAtAddressId}">Создать новый элемент</button>
+</div>
+
+<!-- Модальное окно для создания нового элемента -->
+<div id="createModal" class="modal">
+    <div class="modal-content">
+        <!-- Форма для создания нового элемента -->
+        <form id="createForm" th:action="@{'/equipment/' + ${equipmentAtAddressId} + '/create'}" method="post">
+            <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                <label for="model">Модель:</label>
+                <input type="text" id="model" name="model" required>
+                <label for="inventoryNumber">Инвентарный номер:</label>
+                <input type="text" id="inventoryNumber" name="inventoryNumber" required>
+                <label for="serialNumber">Серийный номер:</label>
+                <input type="text" id="serialNumber" name="serialNumber" required>
+                <input type="hidden" id="equipmentAdAddressId" name="equipmentAdAddressId" th:value="${equipmentAtAddressId}">
+            </div>
+            <button class="btnCenter" type="submit">Создать</button>
+        </form>
+    </div>
+</div>
+<script src="../static/js/equipmentManage.js"></script>
+</body>
+</html>

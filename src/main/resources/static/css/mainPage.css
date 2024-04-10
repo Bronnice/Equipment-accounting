@@ -1,0 +1,30 @@
+@CHARSET "windows-1255";
+
+TABLE {
+    width: 90%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+TD, TH {
+    padding: 3px;
+    border: 1px solid black;
+}
+
+TH {
+    background: #b0e0e6;
+}
+
+tbody tr:hover {
+    background: #f3bd48; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+}
+
+.center {
+    text-align: center;
+}
+
+ /* Стили для всей страницы */
+body {
+    font-size: 20px;
+}

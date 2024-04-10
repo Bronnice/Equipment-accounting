@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Электронный паспорт оборудования</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainPage.css">
+</head>
+<body>
+<p class="center">
+    <img src="/static/images/logotype.jpg" height=”200px” width="400px"/>
+</p>
+<h1 class="center">ЭЛЕКТРОННЫЙ ПАСПОРТ ОБОРУДОВАНИЯ</h1>
+<div class="center">
+    <table>
+        <thead>
+        <tr>
+            <th>Код объекта</th>
+            <th>Адрес</th>
+            <th>Тип оборудования</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="equipmentAtAddress : ${equipmentList}" th:attr="data-equipmentId=${equipmentAtAddress.id}" onclick="redirect(this.getAttribute('data-equipmentId'))">
+            <td th:text="${equipmentAtAddress.objectCode}">Object Code</td>
+            <td th:text="${equipmentAtAddress.address}">Address</td>
+            <td th:text="${equipmentAtAddress.equipmentType}">Equipment Type</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="../static/js/mainPage.js"></script>
+</body>
+</html>
